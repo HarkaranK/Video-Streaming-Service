@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  authentication:
+    build: ./authentication
+    ports:
+      - "5001:5000"
+  filesystem:
+    build: ./filesystem
+    ports:
+      - "5002:5000"
+    volumes:
+      - ./videos:/videos
+  upload:
+    build: ./upload
+    ports:
+      - "5003:5000"
+  streaming:
+    build: ./streaming
+    ports:
+      - "5004:5000"
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: 'videoDB'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'rootpassword'
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb
