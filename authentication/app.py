@@ -15,3 +15,6 @@ def authenticate():
     if users.get(username) == password:
         return jsonify({"status": "success"}), 200
     return jsonify({"status": "failure"}), 401
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')

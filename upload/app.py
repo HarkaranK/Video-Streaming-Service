@@ -13,3 +13,6 @@ def upload_file():
     # Save to filesystem service
     response = requests.post('http://filesystem:5000/upload', files={'file': file})
     return response.json(), response.status_code
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')

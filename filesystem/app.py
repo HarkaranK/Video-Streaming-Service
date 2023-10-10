@@ -16,3 +16,6 @@ def upload_file():
 @app.route('/<filename>', methods=['GET'])
 def get_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
