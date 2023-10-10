@@ -1,0 +1,9 @@
+CREATE DATABASE videoDB;
+
+USE videoDB;
+
+CREATE TABLE videos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    path VARCHAR(255)
+);
