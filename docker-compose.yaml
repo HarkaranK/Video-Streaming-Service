@@ -1,0 +1,40 @@
+version: '3.3'
+
+services:
+
+  auth:
+    image: auth
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+  
+  enter-web-app:
+    image: enter-web-app
+    ports: - "8081:80"
+    networks:
+      - app-network
+  
+  result-web-app:
+    image: result-web-app
+    ports: - "8082:80"
+
+  mysqlDB:
+    image: mysqlDB
+    ports:
+      - "3306:3306"
+    hostname: mysqlDB
+    networks:
+      - app-network
+
+  mongoDB:
+    image: mongoDB
+    ports:
+      - "2717:27017"
+    hostname: mongoDB
+    networks:
+      - app-network
+
+  networks:
+    app-network:
+      name: app-network
