@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  mysqldb:
+    build:
+      context: .
+      dockerfile: MySQL.Dockerfile
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  filesystem:
+    build:
+      context: .
+      dockerfile: FileSystem.Dockerfile
+    volumes:
+      - video-data:/app/data
+
+  auth_service:
+    build:
+      context: .
+      dockerfile: AuthService.Dockerfile
+
+  video_app:
+    build:
+      context: .
+      dockerfile: VideoApp.Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - auth_service
+      - filesystem
+      - mysqldb
+
+volumes:
+  mysql-data:
+  video-data:
