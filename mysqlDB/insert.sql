@@ -1,4 +1,4 @@
-CREATE DATABASE temp_app;
+CREATE DATABASE IF NOT EXISTS temp_app;
 
 USE temp_app;
 

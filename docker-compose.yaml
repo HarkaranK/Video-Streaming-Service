@@ -3,6 +3,8 @@ version: '3.3'
 services:
   auth:
     build: ./auth
+    ports:
+      - "80:80"
     networks:
       - app-network
     depends_on:
@@ -12,6 +14,8 @@ services:
   enter-web-app:
     build: ./enter-web-app
     restart: always
+    ports:
+     - "8080:8080"
     hostname: enter-web-app
     networks:
       - app-network
@@ -20,12 +24,16 @@ services:
   
   result-web-app:
     build: ./result-web-app
+    ports:
+     - "8090:8090"
     networks:
       - app-network
 
   analytics:
     build: ./analytics
     restart: always
+    ports:
+     - "8100:8100"
     hostname: analytics
     networks:
       - app-network
@@ -35,12 +43,16 @@ services:
 
   mysql-db:
     build: ./mysqlDB
+    ports:
+     - "3307:3306"
     hostname: mysqlDB
     networks:
       - app-network
 
   mongo-db:
     build: ./mongoDB
+    ports:
+     - "2717:27017"
     hostname: mongoDB
     networks:
       - app-network

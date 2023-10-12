@@ -18,36 +18,71 @@ Session = sessionmaker(bind=DB_ENGINE)
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/enter_temp', methods=['GET', 'POST'])
 def enter_temp():
-
     form = TempForm(request.form)
-    if request.method == "POST":
-        if form.validate():
-            tem = Temp(form.weather.data, form.time_of_day.data, form.day_month.data)
-            session = Session()
-            session.add(tem)
-            session.commit()
-            session.close()
-
-            session = DB_SESSION()
-            tempQ = session.query(Temp).all()
-            session.close()
-            temps = []
-            for tem in tempQ:
-                temps.append(temp.to_dict())
-
-            requests.get('http://analytics:8100/update_stats')
-            return render_template('index.html', existing_temps=temps)
-
+    
+    if request.method == "POST" and form.validate():
+        tem = Temp(form.weather.data, form.time_of_day.data, form.day_month.data)
+        session = DB_SESSION()
+        session.add(tem)
+        session.commit()
+        session.close()
+        
         session = DB_SESSION()
         tempQ = session.query(Temp).all()
         session.close()
         temps = []
-        for tem in tempQ:
+        for temp in tempQ:
             temps.append(temp.to_dict())
 
-        return render_template('index.html',existing_temps=temp)
+        # Assuming the analytics service responds with data
+        response = requests.get('http://analytics:8100/update_stats')
+        analytics_data = response.json()  # Parse response, if it's JSON
+        # Handle analytics data as needed
+
+        return render_template('index.html', existing_temps=temps)
+
+    session = DB_SESSION()
+    tempQ = session.query(Temp).all()
+    session.close()
+    temps = []
+    for temp in tempQ:
+        temps.append(temp.to_dict())
+
+    return render_template('index.html', existing_temps=temps)
+
+
+# @app.route('/', methods=['GET', 'POST'])
+# def enter_temp():
+
+#     form = TempForm(request.form)
+#     if request.method == "POST":
+#         if form.validate():
+#             tem = Temp(form.weather.data, form.time_of_day.data, form.day_month.data)
+#             session = Session()
+#             session.add(tem)
+#             session.commit()
+#             session.close()
+
+#             session = DB_SESSION()
+#             tempQ = session.query(Temp).all()
+#             session.close()
+#             temps = []
+#             for tem in tempQ:
+#                 temps.append(temp.to_dict())
+
+#             requests.get('http://analytics:8100/update_stats')
+#             return render_template('index.html', existing_temps=temps)
+
+#         session = DB_SESSION()
+#         tempQ = session.query(Temp).all()
+#         session.close()
+#         temps = []
+#         for tem in tempQ:
+#             temps.append(temp.to_dict())
+
+#         return render_template('index.html',existing_temps=temp)
 
 
 if __name__ == "__main__":
