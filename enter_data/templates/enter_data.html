@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Data</title>
+    <script>
+        function submitData(event) {
+            event.preventDefault();
+            const content = document.getElementById('content').value;
+
+            fetch('/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ content })
+            }).then(response => response.json()).then(data => {
+                alert(data.message);
+            });
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="submitData(event)">
+        <label for="content">Enter Data:</label>
+        <input type="text" id="content" name="content">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
