@@ -1,3 +1,4 @@
+
 from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
@@ -18,9 +19,14 @@ def authenticate():
     password = request.json['password']
     
     if username in USERS and USERS[username] == password:
-        return jsonify({"message": "Authenticated!"}), 200
+        # return jsonify({"message": "Authenticated!"}), 200
+        return render_template('authenticated.html')
     else:
         return jsonify({"message": "Authentication failed!"}), 401
+
+@app.route('/authenticated')
+def authenticated():
+    return render_template('authenticated.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8001)

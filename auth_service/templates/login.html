@@ -14,8 +14,16 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ username, password })
-            }).then(response => response.json()).then(data => {
-                alert(data.message);
+            }).then(response => {
+                if (response.status === 200) {
+                    // Redirect to the authenticated page on success
+                    window.location.href = '/authenticated';
+                } else {
+                    // Display an alert for authentication failure
+                    alert('Authentication failed. Please try again.');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
             });
         }
     </script>

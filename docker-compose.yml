@@ -31,7 +31,7 @@ services:
   mysql_db:
     image: mysql:5.7
     environment:
-      MYSQL_DATABASE: 'dataDB'
+      MYSQL_DATABASE: 'grades_app' 
       MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
