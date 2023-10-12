@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Enter Temperature</title>
+</head>
+<body>
+    <h1>Enter Temperature</h1>
+    <form action="/enter-web-app" method="POST">
+        <div class="form-group">
+            <label for="weather">Weather:</label>
+            <input type="text" minlength="1" maxlength="25" class="form-control" id="weather" placeholder="Enter weather type" name="weather">
+        </div>
+        <div class="form-group">
+            <label for="time_of_day">Time of Day:</label>
+            <input type="time" class="form-control" id="time_of_day" name="time_of_day">
+        </div>
+        <div class="form-group">
+            <label for="day_month">Day and Month:</label>
+            <input type="date" class="form-control" id="day_month" name="day_month">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Weather</th>
+                <th scope="col">Time of Day</th>
+                <th scope="col">Day and Month</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for temp in existing_temps %}
+            <tr>
+                <th scope="row">{{ temp.id }}</th>
+                <td>{{ temp.weather }}</td>
+                <td>{{ temp.time_of_day }}</td>
+                <td>{{ temp.day_month }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Enter Temprature</title>
+    </head>
+
+    <body>
+        <h1>Enter Temprature</h1>
+        <form action="/", method="POST">
+            <label for="temp">Weather: </label>
+            <label for="time_of_day">Time: </label>
+            <label for="day_month">Day and Month: </label>
+        </form>
+    </body>
+</html> -->
