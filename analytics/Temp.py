@@ -16,10 +16,9 @@ class Temp(Base):
         self.day_month = day_month
 
     def to_dict(self):
-        dict = {
-            dict['id'] = self.id
-            dict['weather'] = self.weather
-            dict['time_of_day'] = self.time_of_day
-            dict['day_month'] = self.day_month
-        }
-        return dict
+        my_dict = {}
+        my_dict['id'] = self.id
+        my_dict['weather'] = self.weather
+        my_dict['time_of_day'] = self.time_of_day
+        my_dict['day_month'] = self.day_month
+        return my_dict

@@ -1,6 +1,6 @@
 from mongoengine import Document, ListField, ReferenceField, StringField, FloatField, DateTimeField
 
-class Result(Document)
+class Result(Document):
     courses = ListField(ReferenceField('CourseStats'), required=True)
     timestamp = DateTimeField(required=True)
 

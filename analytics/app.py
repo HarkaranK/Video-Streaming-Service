@@ -1,10 +1,13 @@
 from mongoengine import connect
-from Stats import Results, CourseStats
+from statistics import Result, CourseStats 
 from datetime import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from base import base
+from base import Base
 from Temp import Temp
+from flask import Flask
+
+
 
 
 
@@ -14,14 +17,15 @@ SQL_USER = 'temp_app'
 SQL_PASSWORD = 'temp_app'
 SQL_DB_NAME = 'temp_app'
 
-DB_ENGINE = create_engine(f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DBNAME}")
+DB_ENGINE = create_engine(f"mysql+pymysql://{SQL_USER}:{SQL_PASSWORD}@{SQL_HOST}:{SQL_PORT}/{SQL_DB_NAME}")
+
 Base.metadata.bind = DB_ENGINE
 DB_SESSION = sessionmaker(bind=DB_ENGINE)
 
 MONGO_HOST = 'results_db'
 MONGO_PORT = '27017'
 MONGO_DB_NAME = 'temp_app'
-CONN_STR = f'mongodb://{MONGO_HOST}:{MONGO_PORT}/{MONGO_DBNAME}'
+CONN_STR = f'mongodb://{MONGO_HOST}:{MONGO_PORT}/{MONGO_DB_NAME}'
 
 connect(host=CONN_STR)
 

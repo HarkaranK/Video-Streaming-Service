@@ -4,7 +4,7 @@ from base import Base
 from Temp import Temp
 from flask import Flask, render_template, request
 from TempForm import TempForm
-import request
+import requests
 
 DB_HOST = 'entry_db'
 DB_PORT = '3306'
@@ -18,7 +18,7 @@ Session = sessionmaker(bind=DB_ENGINE)
 
 app = Flask(__name__)
 
-@app.route('/enter-web-app', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def enter_temp():
 
     form = TempForm(request.form)
