@@ -14,7 +14,7 @@ def authenticate():
     # Check if the provided credentials are correct
     if username == "admin" and password == "password":
         # If credentials are correct, redirect to http://localhost:8001/
-        return redirect('http://localhost:8001/')
+        return redirect('http://localhost:8000/')
     
     # If credentials are invalid, stay on the login page
     return render_template('login.html', message="Invalid credentials")

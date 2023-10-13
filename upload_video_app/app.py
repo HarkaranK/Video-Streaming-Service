@@ -29,7 +29,7 @@ def upload_video():
         filename = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(filename)
         flash('Video successfully uploaded')
-        return redirect(url_for('upload_page'))
+        return redirect('http://localhost:8001/')  # Redirect to the desired URL
     else:
         flash('Allowed video types are -> mp4, avi, mkv, flv')
         return redirect(request.url)
