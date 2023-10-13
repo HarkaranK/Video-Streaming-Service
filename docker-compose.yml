@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: videodb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+
+  upload_video_app:
+    build: ./upload_video_app
+    ports:
+      - "8000:5000"
+    depends_on:
+      - authentication_service
+      - file_system_service
+      - mysql-db
+
+  video_streaming_app:
+    build: ./video_streaming_app
+    ports:
+      - "8001:5000"
+    depends_on:
+      - authentication_service
+      - file_system_service
+      - mysql-db
+
+  authentication_service:
+    build: ./authentication_service
+    ports:
+      - "8002:5000"
+
+  file_system_service:
+    build: ./file_system_service
+    ports:
+      - "8003:5000"
+    volumes:
+      - video-data:/app/data
+
+volumes:
+  video-data:
