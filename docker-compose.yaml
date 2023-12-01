@@ -1,0 +1,51 @@
+version: '3'
+services:
+
+  authentication:
+    networks:
+      - mynetwork
+    build:
+      context: ./authentication
+    ports:
+      - "5001:5001"
+    # other configurations...
+
+  filesystem:
+    networks:
+      - mynetwork
+    build:
+      context: ./filesystem
+    ports:
+      - "5003:5003"
+    # other configurations...
+
+  upload:
+    networks:
+      - mynetwork
+    build:
+      context: ./upload
+    ports:
+      - "5002:5002"
+
+  mysql:
+    image: mysql:latest
+    build:
+      context: ./mysql
+    ports:
+    - "3307:3306" 
+    environment:
+      - MYSQL_ROOT_PASSWORD=vid
+      - DB_USERNAME=root
+      - DB_PASSWORD=vid
+      - DB_HOST=host.docker.internal
+      # - DB_PORT=3306
+      - DB_NAME=videos
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  mysql_data:
