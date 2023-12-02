@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Streaming Service</title>
+</head>
+<body>
+    <h1>Welcome to the Video Streaming Service</h1>
+    <div id="videos">
+        <!-- Video list will be displayed here -->
+    </div>
+    <script>
+        // Fetch videos when the page loads
+        window.onload = () => {
+            fetchVideos();
+        };
+
+        // Function to fetch and display videos
+        function fetchVideos() {
+            fetch('/videos') // Make a GET request to fetch videos from your server
+                .then(response => response.json())
+                .then(data => {
+                    const videoList = data.videos;
+                    const videosDiv = document.getElementById('videos');
+
+                    videoList.forEach(video => {
+                        const videoElement = document.createElement('video');
+                        videoElement.src = video.path;
+                        videoElement.controls = true;
+
+                        const title = document.createElement('h3');
+                        title.textContent = video.title;
+
+                        videosDiv.appendChild(title);
+                        videosDiv.appendChild(videoElement);
+                    });
+                })
+                .catch(error => console.error('Error fetching videos:', error));
+        }
+    </script>
+</body>
+</html>

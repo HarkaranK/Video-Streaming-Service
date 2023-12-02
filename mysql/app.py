@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Configure MySQL connection
 # Replace 'root', 'vid', 'host.docker.internal', '3306', 'videos' with your MySQL details
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:vid@host.docker.internal:3307/videos'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:vid@host.docker.internal/videos'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable modification tracking as it can be resource-intensive
 db = SQLAlchemy(app)
 

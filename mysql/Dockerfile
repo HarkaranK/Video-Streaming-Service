@@ -1,18 +1,16 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9
+# Use MySQL as the base image
+FROM mysql:latest
 
-# Set the working directory in the container
-WORKDIR /app
+# Optionally, set environment variables if needed
+ENV MYSQL_ROOT_PASSWORD=vid
+ENV MYSQL_DATABASE=video
+ENV MYSQL_USER=vid
+ENV MYSQL_PASSWORD=vid
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy your SQL initialization script into the MySQL initialization directory
+COPY init.sql /docker-entrypoint-initdb.d/
 
-# Install any needed packages specified in requirements.txt
-RUN pip install  -r ./requirments.txt
+# Expose the MySQL port if required
+EXPOSE 3306
 
 
-# Expose the port the app runs on
-EXPOSE 5000
-
-# Command to run the application
-CMD ["python", "app.py"]

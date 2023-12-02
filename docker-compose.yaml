@@ -27,6 +27,14 @@ services:
     ports:
       - "5002:5002"
 
+  video_stream:
+    networks:
+      - mynetwork
+    build:
+      context: ./video_stream
+    ports:
+      - "5000:5000"
+
   mysql:
     image: mysql:latest
     build:
@@ -35,13 +43,17 @@ services:
     - "3307:3306" 
     environment:
       - MYSQL_ROOT_PASSWORD=vid
-      - DB_USERNAME=root
-      - DB_PASSWORD=vid
-      - DB_HOST=host.docker.internal
-      # - DB_PORT=3306
-      - DB_NAME=videos
+      - MYSQL_DATABASE=videos
+      # - MYSQL_ROOT_PASSWORD=vid
+      # - DB_USERNAME=root
+      # - DB_PASSWORD=vid
+      # - DB_HOST=host.docker.internal
+      # # - DB_PORT=3306
+      # - DB_NAME=videos
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - mynetwork
 
 networks:
   mynetwork:
