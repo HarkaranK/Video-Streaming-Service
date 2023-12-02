@@ -10,3 +10,4 @@ To build images
 - docker build -t filesystem ./filesystem
 - docker build -t mysql ./mysql
 - docker build -t upload ./upload
+- docker build -t video_stream ./video_stream

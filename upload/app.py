@@ -9,7 +9,7 @@ from models import Video
 app = Flask(__name__)
 
 # Configure MySQL connection
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://vid:vid@video-streaming-service-mysql-1:3307/video'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://vid:vid@video-streaming-service-mysql-1:3306/video'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable modification tracking as it can be resource-intensive
 
 # Initialize SQLAlchemy
