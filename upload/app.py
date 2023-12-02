@@ -19,9 +19,12 @@ def upload_file():
 
     # Send the file to the File System service
     files = {'file': (file.filename, file.stream, file.mimetype)}
-    response = requests.post('http://127.0.0.1:5003/receive_file', files=files) # Works when not containerized
-    # response = requests.post('http://video-streaming-service-filesystem-1:5003/receive_file', files=files)
+    #response = requests.post('http://video-streaming-service-filesystem:5003/receive_file', files=files)
+    #response = requests.post('http://127.0.0.1:5003/receive_file', files=files) # Works when not containerized
+    response = requests.post('http://video-streaming-service-filesystem-1:5003/receive_file', files=files)
     # response = requests.post('http://192.168.128.4:5003/receive_file', files=files)
+    # response = requests.post('http://172.29.0.3:5003/receive_file', files=files)
+
 
     if response.status_code == 200:
         return jsonify({'message': 'File uploaded successfully'}), 200
