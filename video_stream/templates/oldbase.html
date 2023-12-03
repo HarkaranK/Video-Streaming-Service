@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Streaming Service</title>
+</head>
+<body>
+    <h1>Welcome to the Video Streaming Service</h1>
+    <div id="videos">
+        <!-- Video list will be displayed here -->
+    </div>
+    <script>
+        window.onload = () => {
+            fetch('/videos-page')
+                .then(response => response.json())
+                .then(data => {
+                    const videoList = data.videos;
+
+                    const videosDiv = document.getElementById('videos');
+    
+                    videoList.forEach(video => {
+                        const videoLink = document.createElement('a');
+                        videoLink.href = video.path;
+                        videoLink.textContent = video.title;
+                        videoLink.target = "_blank";
+    
+                        const lineBreak = document.createElement('br');
+    
+                        videosDiv.appendChild(videoLink);
+                        videosDiv.appendChild(lineBreak);
+                    });
+                })
+                .catch(error => console.error('Error fetching videos:', error));
+        };
+    </script>
+    <!-- <script>
+        // Function to fetch and display videos
+        function fetchVideos() {
+            fetch('/videos-page') // Make a GET request to fetch videos from your server
+                .then(response => response.json())
+                .then(data => {
+                    const videoList = data.Video;
+
+                    const videosDiv = document.getElementById('videos');
+    
+                    videoList.forEach(video => {
+                        const videoLink = document.createElement('a');
+                        videoLink.href = video.path; // Set the video path as the href
+                        videoLink.textContent = video.title; // Set the video title as the link text
+                        videoLink.target = "_blank"; // Open video in a new tab
+    
+                        const lineBreak = document.createElement('br');
+    
+                        videosDiv.appendChild(videoLink);
+                        videosDiv.appendChild(lineBreak);
+                    });
+                })
+                .catch(error => console.error('Error fetching videos:', error));
+        }
+    
+        // Fetch videos when the page loads
+        window.onload = () => {
+            fetchVideos();
+        };
+    </script> -->
+</body>
+</html>

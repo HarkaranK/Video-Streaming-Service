@@ -3,7 +3,7 @@ import os
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'files')  # Directory to store uploaded files
+UPLOAD_FOLDER = os.path.join('/app/files')  # Directory to store uploaded files
 
 @app.route('/receive_file', methods=['POST'])
 def receive_file():

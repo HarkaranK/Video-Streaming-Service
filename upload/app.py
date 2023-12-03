@@ -36,7 +36,8 @@ def upload_file():
 
     if response.status_code == 200:
         # If file upload is successful, save metadata to MySQL database
-        video = Video(title=file.filename, path=f'../filesystem/files/{file.filename}')
+        # video = Video(title=file.filename, path=f'../filesystem/files/{file.filename}')
+        video = Video(title=file.filename, path=f'/app/files/{file.filename}')
         db.session.add(video)
         db.session.commit()
         

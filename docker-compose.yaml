@@ -17,6 +17,8 @@ services:
       context: ./filesystem
     ports:
       - "5003:5003"
+    volumes:
+      - uploaded_videos:/app//files
     # other configurations...
 
   upload:
@@ -34,6 +36,8 @@ services:
       context: ./video_stream
     ports:
       - "5000:5000"
+    volumes:
+      - uploaded_videos:/app/files
 
   mysql:
     image: mysql:latest
@@ -61,3 +65,4 @@ networks:
 
 volumes:
   mysql_data:
+  uploaded_videos:

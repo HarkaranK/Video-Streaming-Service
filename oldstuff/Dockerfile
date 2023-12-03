@@ -1,15 +1,24 @@
-# Use MySQL as the base image
-FROM mysql:latest
+# Use an official Python runtime as a parent image
+FROM python:3.9
 
-# Optionally, set environment variables if needed
-ENV MYSQL_ROOT_PASSWORD=yourpassword
-ENV MYSQL_DATABASE=yourdatabase
-ENV MYSQL_USER=youruser
-ENV MYSQL_PASSWORD=yourpassword
+# Set the working directory in the container
+WORKDIR /app
 
-# Copy your SQL initialization scripts if needed
-# COPY ./init.sql /docker-entrypoint-initdb.d/
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-# Expose the MySQL port if required
-EXPOSE 3307
+# Install MySQL client and other necessary packages
+RUN apt-get update && \
+    apt-get install -y default-mysql-client && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Flask and SQLAlchemy
+RUN pip install Flask Flask-SQLAlchemy mysql-connector-python
+
+# Expose the port the app runs on
+EXPOSE 5000
+
+# Command to run the application
+CMD ["python", "app.py"]
 
