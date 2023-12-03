@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 import os
 import requests
@@ -35,13 +35,11 @@ def upload_file():
     response = requests.post('http://video-streaming-service-filesystem-1:5003/receive_file', files=files)
 
     if response.status_code == 200:
-        # If file upload is successful, save metadata to MySQL database
-        # video = Video(title=file.filename, path=f'../filesystem/files/{file.filename}')
         video = Video(title=file.filename, path=f'/app/files/{file.filename}')
         db.session.add(video)
         db.session.commit()
         
-        return jsonify({'message': 'File uploaded successfully'}), 200
+        return redirect('http://127.0.0.1:5000/videos-page')
     else:
         return jsonify({'message': 'File upload failed'}), 500
 

@@ -18,7 +18,7 @@ def authenticate():
 
     if username in users and users[username] == password:
         # Authentication successful, redirect to the index page
-        return redirect('http://127.0.0.1:5002/upload') #('/upload')
+        return redirect('http://127.0.0.1:5002/upload') 
     else:
         # Authentication failed, render the login page again with a message
         return redirect('/', message='Invalid credentials. Please try again.')
