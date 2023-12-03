@@ -18,7 +18,7 @@ services:
     ports:
       - "5003:5003"
     volumes:
-      - uploaded_videos:/app//files
+      - uploaded_videos:/app/files
     # other configurations...
 
   upload:
