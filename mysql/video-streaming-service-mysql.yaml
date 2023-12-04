@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-streaming-service-mysql-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+      service: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+        service: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: harkarank/project2:mysql  # Updated image reference with tag
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: vid
+        - name: MYSQL_DATABASE
+          value: video
+        - name: MYSQL_USER
+          value: vid
+        - name: MYSQL_PASSWORD
+          value: vid
+        ports:
+        - containerPort: 3306
+

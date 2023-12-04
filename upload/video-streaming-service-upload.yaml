@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-streaming-service-upload-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: upload
+      service: upload
+  template:
+    metadata:
+      labels:
+        app: upload
+        service: upload
+    spec:
+      containers:
+      - name: upload
+        image: harkarank/project2:upload  # Updated image reference with tag
+        ports:
+        - containerPort: 5002
+

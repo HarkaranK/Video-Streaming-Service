@@ -20,12 +20,7 @@ def render_video_page():
 def stream_video(video_id):
     video = Video.query.get(video_id)
     if video:
-        # video_path = f"/files/{video.path}" 
-        # video_path = f"/app/files/{video.path}" 
         video_path = video.path
-        #video_path = video.path  # Assuming this is the path to the video file
-        # Implement logic to retrieve the video file and stream it
-        # You can use send_file from Flask to stream the file
         return send_file(video_path, as_attachment=False)
     else:
         return "Video not found", 404

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-streaming-service-authentication-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authentication
+      service: authentication
+  template:
+    metadata:
+      labels:
+        app: authentication
+        service: authentication
+    spec:
+      containers:
+      - name: authentication
+        image: harkarank/project2:auth  # Updated image reference with tag
+        ports:
+        - containerPort: 5001
+

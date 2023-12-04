@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-streaming-service-video-stream-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: video-stream
+      service: video-stream
+  template:
+    metadata:
+      labels:
+        app: video-stream
+        service: video-stream
+    spec:
+      containers:
+      - name: videostream
+        image: harkarank/project2:videostream  # Updated image reference with tag
+        ports:
+        - containerPort: 5000

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-streaming-service-filesystem-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: filesystem
+      service: filesystem
+  template:
+    metadata:
+      labels:
+        app: filesystem
+        service: filesystem
+    spec:
+      containers:
+      - name: filesystem
+        image: harkarank/project2:filesystem  # Updated image reference with tag
+        ports:
+        - containerPort: 5003
+
