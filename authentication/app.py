@@ -11,6 +11,7 @@ users = {
 def login():
     return render_template('login.html')
 
+
 @app.route('/authenticate', methods=['POST'])
 def authenticate():
     username = request.form.get('username')
@@ -21,12 +22,9 @@ def authenticate():
         return redirect('http://127.0.0.1:5002/upload') 
     else:
         # Authentication failed, render the login page again with a message
-        return redirect('/', message='Invalid credentials. Please try again.')
+        return render_template('login.html', message='Invalid credentials. Please try again.')
 
 
-# @app.route('/index')
-# def index():
-#     return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5001)

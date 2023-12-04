@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Video Streaming Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome to the Video Streaming Service</h1>
-    <div id="videos">
-        <h2>Available Videos:</h2>
-        <ul>
-            {% for video in videos %}
-                <li>
-                    <a href="/videos/{{ video.id }}">{{ video.title }}</a>
-                </li>
-            {% endfor %}
-        </ul>
+    <div class="container">
+        <h1 class="heading">Welcome to the Video Streaming Service</h1>
+        <div id="videos">
+            <h2>Available Videos:</h2>
+            <ul>
+                {% for video in videos %}
+                    <li>
+                        <a href="/videos/{{ video.id }}">{{ video.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </body>
 </html>

@@ -1,0 +1,78 @@
+/* Existing styles for the login page */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-image: linear-gradient(to bottom, #080537, #311865, #672391, #a524b8, #eb12da);
+}
+
+/* Styles for both login and upload containers */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 24px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="file"] {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    color: #fff;
+    background-color: #672391;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #080537;
+}
+
+/* New styles for the upload page */
+.upload-container {
+    background-image: linear-gradient(to bottom, #9d77ed, #b89aed, #d3bcf2, #eddff7);
+}
+
+.upload-container h1 {
+    color: #5a2a82; /* A lighter shade for the heading */
+}
+
+.upload-container input[type="submit"] {
+    background-color: #b89aed; /* A lighter purple for the button */
+}
+
+.upload-container input[type="submit"]:hover {
+    background-color: #9d77ed; /* A slightly darker purple for hover state */
+}
