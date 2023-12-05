@@ -43,3 +43,10 @@ kubectl delete pods --all
 kubectl delete pvc --all
 kubectl delete pv --all
 ```
+
+```
+kubectl get pods --selector=app=filesystem-service
+kubectl get pods --selector=app=upload-service
+kubectl get pods --selector=app=mysql-service
+kubectl get pods --selector=app=video-stream-service
+```

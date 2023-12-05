@@ -9,7 +9,10 @@ from models import Video
 app = Flask(__name__)
 
 # Configure MySQL connection
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://vid:vid@video-streaming-service-mysql-1:3306/video'
+# Old
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://vid:vid@video-streaming-service-mysql-1:3306/video'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://vid:vid@mysql-service:3306/video'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable modification tracking as it can be resource-intensive
 
 # Initialize SQLAlchemy
@@ -32,7 +35,9 @@ def upload_file():
 
     # Send the file to the File System service
     files = {'file': (file.filename, file.stream, file.mimetype)}
-    response = requests.post('http://video-streaming-service-filesystem-1:5003/receive_file', files=files)
+    # response = requests.post('http://video-streaming-service-filesystem-1:5003/receive_file', files=files)
+    response = requests.post('http://my-flask-service-5003:5003/receive_file', files=files)
+
 
     if response.status_code == 200:
         video = Video(title=file.filename, path=f'/app/files/{file.filename}')

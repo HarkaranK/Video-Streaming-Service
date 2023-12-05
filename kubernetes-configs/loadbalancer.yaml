@@ -49,4 +49,16 @@ spec:
       port: 5003  # Corrected port to match targetPort
       targetPort: 5003
   type: LoadBalancer
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  selector:
+    app: mysql-service  # Make sure this matches the labels in the deployment
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP
