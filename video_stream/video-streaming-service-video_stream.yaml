@@ -6,12 +6,12 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: video-stream
+      app: video-stream-service
       service: video-stream
   template:
     metadata:
       labels:
-        app: video-stream
+        app: video-stream-service
         service: video-stream
     spec:
       containers:

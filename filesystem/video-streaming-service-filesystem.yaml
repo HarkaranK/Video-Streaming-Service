@@ -6,12 +6,12 @@ spec:
   replicas: 3 # More file storage and retrivel
   selector:
     matchLabels:
-      app: filesystem
+      app: filesystem-service
       service: filesystem
   template:
     metadata:
       labels:
-        app: filesystem
+        app: filesystem-service
         service: filesystem
     spec:
       containers:

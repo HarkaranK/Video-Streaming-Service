@@ -6,12 +6,12 @@ spec:
   replicas: 3 # Distributes load during increased user activity ( Different upload sizes and processing times)
   selector:
     matchLabels:
-      app: upload
+      app: upload-service
       service: upload
   template:
     metadata:
       labels:
-        app: upload
+        app: upload-service
         service: upload
     spec:
       containers:

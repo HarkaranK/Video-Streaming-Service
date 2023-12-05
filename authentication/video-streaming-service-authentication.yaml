@@ -6,12 +6,12 @@ spec:
   replicas: 2 # Only 2 users have access so not really needed too much
   selector:
     matchLabels:
-      app: authentication
+      app: authentication-service
       service: authentication
   template:
     metadata:
       labels:
-        app: authentication
+        app: authentication-service
         service: authentication
     spec:
       containers:
