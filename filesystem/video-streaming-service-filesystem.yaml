@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: video-streaming-service-filesystem-deployment
 spec:
-  replicas: 1
+  replicas: 3 # More file storage and retrivel
   selector:
     matchLabels:
       app: filesystem
@@ -19,4 +19,10 @@ spec:
         image: harkarank/project2:filesystem  # Updated image reference with tag
         ports:
         - containerPort: 5003
-
+        volumeMounts:
+        - name: uploaded-videos
+          mountPath: /app/files
+      volumes:
+        - name: uploaded-videos
+          persistentVolumeClaim:
+            claimName: uploaded-videos-pvc

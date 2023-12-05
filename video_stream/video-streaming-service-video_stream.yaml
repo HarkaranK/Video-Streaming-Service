@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: video-streaming-service-video-stream-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: video-stream
@@ -19,3 +19,10 @@ spec:
         image: harkarank/project2:videostream  # Updated image reference with tag
         ports:
         - containerPort: 5000
+        volumeMounts:
+        - name: uploaded-videos
+          mountPath: /app/files
+      volumes:
+        - name: uploaded-videos
+          persistentVolumeClaim:
+            claimName: uploaded-videos-pvc

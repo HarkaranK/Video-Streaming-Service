@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-flask-service-5000
+spec:
+  selector:
+    app: video-stream-service
+  ports:
+    - protocol: TCP
+      port: 5000  # Corrected port to match targetPort
+      targetPort: 5000
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-flask-service-5001
+spec:
+  selector:
+    app: authentication-service
+  ports:
+    - protocol: TCP
+      port: 5001  # Corrected port to match targetPort
+      targetPort: 5001
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-flask-service-5002
+spec:
+  selector:
+    app: upload-service
+  ports:
+    - protocol: TCP
+      port: 5002  # Corrected port to match targetPort
+      targetPort: 5002
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-flask-service-5003
+spec:
+  selector:
+    app: filesystem-service
+  ports:
+    - protocol: TCP
+      port: 5003  # Corrected port to match targetPort
+      targetPort: 5003
+  type: LoadBalancer
+

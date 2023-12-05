@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: video-streaming-service-upload-deployment
 spec:
-  replicas: 1
+  replicas: 3 # Distributes load during increased user activity ( Different upload sizes and processing times)
   selector:
     matchLabels:
       app: upload

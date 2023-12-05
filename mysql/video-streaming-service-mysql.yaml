@@ -15,17 +15,25 @@ spec:
         service: mysql
     spec:
       containers:
-      - name: mysql
-        image: harkarank/project2:mysql  # Updated image reference with tag
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: vid
-        - name: MYSQL_DATABASE
-          value: video
-        - name: MYSQL_USER
-          value: vid
-        - name: MYSQL_PASSWORD
-          value: vid
-        ports:
-        - containerPort: 3306
+        - name: mysql
+          image: harkarank/project2:mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: vid
+            - name: MYSQL_DATABASE
+              value: video
+            - name: MYSQL_USER
+              value: vid
+            - name: MYSQL_PASSWORD
+              value: vid
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-persistent-storage
+
 

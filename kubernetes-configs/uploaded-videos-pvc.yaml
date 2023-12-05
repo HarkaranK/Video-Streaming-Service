@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: uploaded-videos-pvc
+spec:
+  storageClassName: manual  # Define your storage class if needed
+  accessModes:
+    - ReadWriteMany  # Ensure multiple pods can read and write to this volume
+  resources:
+    requests:
+      storage: 10Gi

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: video-streaming-service-authentication-deployment
 spec:
-  replicas: 1
+  replicas: 2 # Only 2 users have access so not really needed too much
   selector:
     matchLabels:
       app: authentication
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: authentication
-        image: harkarank/project2:auth  # Updated image reference with tag
+        image: harkarank/project2:auth 
         ports:
         - containerPort: 5001
 
