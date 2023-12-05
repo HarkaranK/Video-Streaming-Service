@@ -1,0 +1,29 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: authentication-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: video-streaming-service-authentication-deployment
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 50
+
+# apiVersion: autoscaling/v2beta2
+# kind: HorizontalPodAutoscaler
+# metadata:
+#   name: authentication-hpa
+# spec:
+#   scaleTargetRef:
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     name: video-streaming-service-authentication-deployment
+#   minReplicas: 2
+#   maxReplicas: 5
+#   metrics:
+#   - type: Resource
+#     resource:
+#       name: cpu
+#       targetAverageUtilization: 50 # Adjust this value based on your workload

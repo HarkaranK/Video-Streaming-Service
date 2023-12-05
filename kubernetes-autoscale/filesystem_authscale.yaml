@@ -1,0 +1,31 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: filesystem-autoscaler
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: video-streaming-service-filesystem-deployment
+  minReplicas: 3 # Minimum number of replicas
+  maxReplicas: 7 # Maximum number of replicas
+  targetCPUUtilizationPercentage: 50 # Target average CPU utilization percentage
+
+# apiVersion: autoscaling/v2beta2
+# kind: HorizontalPodAutoscaler
+# metadata:
+#   name: filesystem-autoscaler
+# spec:
+#   scaleTargetRef:
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     name: video-streaming-service-filesystem-deployment
+#   minReplicas: 3 # Minimum number of replicas
+#   maxReplicas: 7 # Maximum number of replicas
+#   metrics:
+#   - type: Resource
+#     resource:
+#       name: cpu
+#       target:
+#         type: Utilization
+#         averageUtilization: 50
