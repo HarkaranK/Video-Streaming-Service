@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: authentication
-        image: harkarank/project2:auth-new
+        image: harkarank/project2:auth-new1
         ports:
         - containerPort: 5001
 
