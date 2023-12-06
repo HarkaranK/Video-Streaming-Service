@@ -44,7 +44,7 @@ def upload_file():
         db.session.add(video)
         db.session.commit()
         
-        return redirect('http://127.0.0.1:5000/videos-page')
+        return redirect('http://my-flask-service-5000:5000/videos-page')
     else:
         return jsonify({'message': 'File upload failed'}), 500
 
