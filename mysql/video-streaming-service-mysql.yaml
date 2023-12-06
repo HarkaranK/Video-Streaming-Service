@@ -17,7 +17,6 @@ data:
     CREATE USER 'vid'@'%' IDENTIFIED BY 'vid';
     GRANT ALL PRIVILEGES ON video.* TO 'vid'@'%';
     FLUSH PRIVILEGES;
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -52,9 +51,13 @@ spec:
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql
+            - name: init-script
+              mountPath: /docker-entrypoint-initdb.d/init.sql
+              subPath: init.sql
       volumes:
         - name: mysql-persistent-storage
           persistentVolumeClaim:
             claimName: mysql-persistent-storage
-
-
+        - name: init-script
+          configMap:
+            name: mysql-init-scripts
