@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: upload
-        image: harkarank/project2:upload  # Updated image reference with tag
+        image: harkarank/project2:upload-new  # Updated image reference with tag
         ports:
         - containerPort: 5002
 
